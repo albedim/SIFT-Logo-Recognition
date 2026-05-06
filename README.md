@@ -3,31 +3,23 @@
 A Python computer vision tool that detects whether a reference logo
 appears inside a query image using **SIFT (Scale-Invariant Feature
 Transform)** and **FLANN matching**.
+It works by extracting SIFT keypoints from both images and matching their descriptors using a FLANN-based (KD-Tree) approach, applying Lowe’s ratio test to filter out poor matches, and computing a similarity score (0–100%). The system is robust to scale, rotation, and perspective changes, and can optionally validate geometric consistency using homography with RANSAC. It also provides visualization of matched features and is implemented as a CLI-based tool for easy automation..
 
-------------------------------------------------------------------------
-
-## 🚀 Features
-
--   Detects logos even with scale, rotation, and perspective changes
--   Uses SIFT keypoints + FLANN matcher
--   Computes a **similarity score (0--100%)**
--   Optional geometric verification using homography (RANSAC)
--   Visualization of matched features
--   CLI-based tool for easy automation
-
-------------------------------------------------------------------------
-
-## 📦 Requirements
+## Requirements
 
 Install dependencies:
 
 ``` bash
-pip install requirements.txt or pip install opencv-python numpy
+pip install requirements.txt
+```
+OR
+``` bash
+pip install opencv-python numpy
 ```
 
 ------------------------------------------------------------------------
 
-## ▶️ Usage
+## Usage
 
 ### Basic detection
 
@@ -35,15 +27,11 @@ pip install requirements.txt or pip install opencv-python numpy
 python logo_recognition.py --reference logo.png --query image.png
 ```
 
-------------------------------------------------------------------------
-
 ### Adjust sensitivity
 
 ``` bash
 python logo_recognition.py --reference logo.png --query image.png --threshold 20
 ```
-
-------------------------------------------------------------------------
 
 ### Change matching strictness
 
@@ -51,21 +39,15 @@ python logo_recognition.py --reference logo.png --query image.png --threshold 20
 python logo_recognition.py --reference logo.png --query image.png --ratio 0.75
 ```
 
-------------------------------------------------------------------------
-
 ### Generate visualization
 
 ``` bash
 python logo_recognition.py --reference logo.png --query image.png --visualize
 ```
 
-Output:
-
-    matches.png
-
 ------------------------------------------------------------------------
 
-## ⚙️ Arguments
+## Arguments
 
   Argument        Description
   --------------- -------------------------------------
@@ -78,17 +60,7 @@ Output:
 
 ------------------------------------------------------------------------
 
-## 🧠 How it works
-
-1.  Extract SIFT keypoints from both images\
-2.  Match descriptors using FLANN (KD-Tree)\
-3.  Apply Lowe's ratio test to filter bad matches\
-4.  Estimate similarity score\
-5.  Optionally validate geometry using homography (RANSAC)
-
-------------------------------------------------------------------------
-
-## 📊 Output Example
+## Output Example
 
     Logo FOUND — high confidence (78.4% similarity)
 
@@ -100,21 +72,7 @@ Output:
 
 ------------------------------------------------------------------------
 
-## 📁 Output files
-
--   `matches.png` → visual match preview (optional)
-
-------------------------------------------------------------------------
-
-## ⚠️ Notes
-
--   Works best with clean, high-resolution reference logos
--   Performance depends on image quality and lighting
--   SIFT is CPU-intensive but very robust
-
-------------------------------------------------------------------------
-
-## 🧩 Use cases
+## Use cases
 
 -   Brand/logo detection in images
 -   Screenshot analysis
